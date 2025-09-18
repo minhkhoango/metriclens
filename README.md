@@ -1,42 +1,28 @@
 # MetricLens
 
-### Self-serve ROI for Braintrust experiments.
+Self-serve ROI calculator for Braintrust experiments. A local-first web app that correlates technical improvements with business KPIs to bridge the "Value Translation Gap".
 
-A local-first, zero-backend tool to calculate and visualize the business impact of your Braintrust experiments by correlating them with key business KPIs. This project is a demonstration of proactive value creation.
+## Quick Start
 
----
+```bash
+git clone https://github.com/minhkhoango/metriclens.git
+cd metriclens
+npm install
+npm run dev
+```
 
-## Getting Started
+Open `http://localhost:5173` in your browser.
 
-This application runs entirely in your browser. No data is sent to any server. It requires a JSON export from a Braintrust experiment and a simple CSV file containing your business metrics.
+## Usage
 
-### Prerequisites
+Upload two files (or use the sample data in `sample_data/` folder):
+1. **Braintrust JSON Export**: Array of experiment objects with `created` timestamp and `scores.factuality` metric
+2. **Business KPI CSV**: Two columns (`date` in YYYY-MM-DD format, `value`)
 
-- Node.js (v18 or higher)
-- npm or a compatible package manager (yarn, pnpm)
+Enter your cost and time savings estimates. ROI metrics and correlation charts update in real-time.
 
-### Installation
+**Note**: All processing happens locally in your browser. No data is uploaded or stored.
 
-1.  Clone the repository to your local machine:
-    ```bash
-    git clone [https://github.com/your-username/metriclens.git](https://github.com/your-username/metriclens.git)
-    ```
-2.  Navigate into the project directory:
-    ```bash
-    cd metriclens
-    ```
-3.  Install the necessary dependencies:
-    ```bash
-    npm install
-    ```
+## Tech Stack
 
-### Usage
-
-1.  Start the local development server:
-    ```bash
-    npm run dev
-    ```
-2.  Open your web browser and navigate to the local address provided (usually `http://localhost:5173`).
-3.  The UI will guide you to upload your Braintrust JSON and KPI CSV files. _(Functionality to be built)_
-4.  Enter the cost variables for your manual processes. _(Functionality to be built)_
-5.  View the calculated ROI and correlation chart instantly. _(Functionality to be built)_
+Svelte + TypeScript + Vite + Chart.js

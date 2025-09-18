@@ -34,5 +34,9 @@
   },
   "lint-staged": {
     "*.{js,ts,svelte,md,json}": "prettier --write"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.0",
+    "svelte-chartjs": "^3.1.5"
   }
 }

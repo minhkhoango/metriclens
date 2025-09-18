@@ -8,11 +8,17 @@ export interface CalculationInputs {
   hoursPerIntervention: number;
 }
 
+export interface ChartDataPoint {
+  date: string;
+  braintrustScore: number | null;
+  kpiValue: number | null;
+}
+
 export interface CalculationResults {
   totalROI: number;
   hoursRecaptured: number;
   manualInterventionsAvoided: number;
-  correlationData: { date: string; braintrustScore: number; kpiValue: number }[];
+  chartData: ChartDataPoint[];
 }
 
 /**
@@ -26,43 +32,42 @@ export function calculateMetrics(inputs: CalculationInputs): CalculationResults 
   if (!braintrustData || !kpiData || braintrustData.length === 0 || kpiData.length === 0) {
     return null;
   }
-  
-  // For this MVP, we simplify: we assume a direct relationship.
-  // A real version would need more sophisticated time-series alignment.
-  // We'll simulate "interventions avoided" as being related to the improvement in the KPI.
 
+  // --- ROI Calculation ---
   const initialKpi = kpiData[0].value;
   const finalKpi = kpiData[kpiData.length - 1].value;
-  
-  // Let's assume the KPI is something where a higher value is better (e.g., user retention).
-  // And every 1% improvement avoids 10 manual interventions. This is a placeholder assumption.
   const kpiImprovementPercentage = ((finalKpi - initialKpi) / initialKpi) * 100;
-
-  // Avoid negative interventions if KPI decreased
-  const manualInterventionsAvoided = Math.max(0, Math.round(kpiImprovementPercentage * 10)); 
-
+  const manualInterventionsAvoided = Math.max(0, Math.round(kpiImprovementPercentage * 10));
   const totalCostSavings = manualInterventionsAvoided * costPerIntervention;
   const hoursRecaptured = manualInterventionsAvoided * hoursPerIntervention;
-  
-  // For the MVP, we'll define the "investment" as a fixed placeholder.
-  // A real app would let the user input this.
-  const totalInvestment = 5000; // Placeholder for cost of Braintrust, eng time, etc.
-  
+  const totalInvestment = 5000; // Placeholder investment cost
   const totalROI = totalInvestment > 0 ? ((totalCostSavings - totalInvestment) / totalInvestment) * 100 : 0;
   
-  // Mock correlation data for the chart
-  const correlationData = kpiData.map((kpi, index) => ({
-    date: kpi.date,
-    // Just picking a score for simplicity. A real app would align this by date.
-    braintrustScore: braintrustData[0]?.scores?.factuality ?? 0.5 + (index/kpiData.length) * 0.4, 
-    kpiValue: kpi.value
-  }));
+  // --- Chart Data Correlation ---
+  // Create a map of Braintrust scores by date for efficient lookup.
+  const scoreMap = new Map<string, number>();
+  // We'll use the 'factuality' score as the primary technical metric.
+  braintrustData.forEach(exp => {
+    const date = exp.created.split('T')[0]; // Get YYYY-MM-DD from ISO string
+    scoreMap.set(date, exp.scores.factuality);
+  });
 
+  let lastSeenScore = braintrustData[0].scores.factuality;
+  const chartData = kpiData.map(kpiPoint => {
+    if (scoreMap.has(kpiPoint.date)) {
+      lastSeenScore = scoreMap.get(kpiPoint.date)!;
+    }
+    return {
+      date: kpiPoint.date,
+      braintrustScore: lastSeenScore,
+      kpiValue: kpiPoint.value,
+    };
+  });
 
   return {
     totalROI: parseFloat(totalROI.toFixed(2)),
     hoursRecaptured: parseFloat(hoursRecaptured.toFixed(2)),
     manualInterventionsAvoided,
-    correlationData,
+    chartData,
   };
 }

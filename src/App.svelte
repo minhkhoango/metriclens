@@ -3,8 +3,7 @@
 <script lang="ts">
   import InputPanel from './components/InputPanel.svelte';
   import ResultsPanel from './components/ResultsPanel.svelte';
-  // VisualizationPanel will be implemented in Sprint 2
-  // import VisualizationPanel from './components/VisualizationPanel.svelte';
+  import VisualizationPanel from './components/VisualizationPanel.svelte';
   import './styles/app.css';
 </script>
 
@@ -16,9 +15,7 @@
   
   <InputPanel />
   <ResultsPanel />
-  
-  <!-- The visualization panel is part of Sprint 2 (Day 7) -->
-  <!-- <VisualizationPanel /> -->
+  <VisualizationPanel />
 
 </main>
 
