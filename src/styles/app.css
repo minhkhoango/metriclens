@@ -1,12 +1,54 @@
-/* Global styles, CSS variables for the Braintrust color palette, 
-  and typography rules will be defined here on Day 4.
-*/
+/* src/styles/app.css */
 
+/* Import the Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* Define the Braintrust color palette as CSS variables for easy reuse */
+:root {
+  --bt-green: #0AAD0A;
+  --bt-light-green: #DFFE89;
+  --bt-dark-gray: #444444;
+  --bt-background: #F9F9F9;
+  --bt-border-gray: #EAEAEA;
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Global body styles */
 :global(body) {
   margin: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #f9f9f9;
-  color: #444444;
+  font-family: var(--font-family-primary);
+  background-color: var(--bt-background);
+  color: var(--bt-dark-gray);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base styles for panels */
+.panel-container {
+  background-color: white;
+  border: 1px solid var(--bt-border-gray);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Typography styles */
+h1 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
 }

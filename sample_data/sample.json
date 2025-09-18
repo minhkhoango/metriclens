@@ -1,0 +1,46 @@
+[
+    {
+      "id": "exp_abc123",
+      "name": "Chatbot Prompt v1.1",
+      "created": "2025-07-05T10:00:00Z",
+      "scores": {
+        "factuality": 0.78,
+        "helpfulness": 0.82,
+        "consistency": 0.91,
+        "latency": 0.55
+      }
+    },
+    {
+      "id": "exp_def456",
+      "name": "Chatbot Prompt v1.2 - More concise",
+      "created": "2025-07-12T11:30:00Z",
+      "scores": {
+        "factuality": 0.85,
+        "helpfulness": 0.88,
+        "consistency": 0.90,
+        "latency": 0.60
+      }
+    },
+    {
+      "id": "exp_ghi789",
+      "name": "Chatbot Prompt v2.0 - Fine-tuned model",
+      "created": "2025-07-19T09:45:00Z",
+      "scores": {
+        "factuality": 0.92,
+        "helpfulness": 0.94,
+        "consistency": 0.95,
+        "latency": 0.58
+      }
+    },
+    {
+      "id": "exp_jkl012",
+      "name": "Chatbot Prompt v2.1 - Final candidate",
+      "created": "2025-07-26T14:00:00Z",
+      "scores": {
+        "factuality": 0.96,
+        "helpfulness": 0.95,
+        "consistency": 0.97,
+        "latency": 0.52
+      }
+    }
+  ]

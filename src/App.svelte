@@ -1,31 +1,43 @@
+<!-- src/App.svelte -->
+
 <script lang="ts">
-  import InputPanel from "./components/InputPanel.svelte";
-  import ResultsPanel from "./components/ResultsPanel.svelte";
-  import VisualizationPanel from "./components/VisualizationPanel.svelte";
-  import "./styles/app.css";
+  import InputPanel from './components/InputPanel.svelte';
+  import ResultsPanel from './components/ResultsPanel.svelte';
+  // VisualizationPanel will be implemented in Sprint 2
+  // import VisualizationPanel from './components/VisualizationPanel.svelte';
+  import './styles/app.css';
 </script>
 
 <main>
-  <h1>MetricLens</h1>
-  <p>Self-serve ROI for Braintrust experiments.</p>
-
-  <!-- Placeholder components will be fleshed out in subsequent days -->
+  <header>
+    <h1>MetricLens</h1>
+    <p>A self-serve calculator to prove the ROI of your Braintrust experiments.</p>
+  </header>
+  
   <InputPanel />
   <ResultsPanel />
-  <VisualizationPanel />
+  
+  <!-- The visualization panel is part of Sprint 2 (Day 7) -->
+  <!-- <VisualizationPanel /> -->
+
 </main>
 
 <style>
   main {
-    text-align: center;
-    padding: 1em;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 2rem;
   }
 
-  h1 {
-    color: #333;
-    font-size: 2.5em;
-    font-weight: 500;
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  header p {
+    font-size: 18px;
+    max-width: 500px;
+    margin: 0.5rem auto 0;
+    color: #666;
   }
 </style>
